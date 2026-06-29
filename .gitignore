@@ -1,0 +1,41 @@
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Data — don't commit local DB or vector store
+data/db/
+data/chroma/
+data/raw/
+
+# Eval results
+eval/results/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit secrets (local only)
+.streamlit/secrets.toml
+
+# Debug files
+debug_sql.txt
+test_*.py
+
+# Docker
+*.log
