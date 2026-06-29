@@ -7,7 +7,11 @@ from config.settings import get_settings
 
 settings = get_settings()
 
-_SCORES_URL = f"http://{settings.api_host}:{settings.api_port}/api/v1/scores"
+import os
+_SCORES_URL = os.getenv(
+    "API_BASE_URL",
+    f"http://localhost:{settings.api_port}"
+) + "/api/v1/scores"
 
 _STATUS_COLOR = {
     "IN_PLAY":   "#00ff41",   # bright green — live
