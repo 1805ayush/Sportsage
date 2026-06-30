@@ -29,9 +29,13 @@ def _in_window(score: dict, hours: int = 24) -> bool:
     try:
         dt = datetime.fromisoformat(utc_date_str.replace("Z", "+00:00"))
         now = datetime.now(timezone.utc)
+ 
+        if score.get("status") == "SCHEDULED" and dt < now:
+            return False  # kickoff time passed but still shows SCHEDULED — stale
+ 
         return (now - timedelta(hours=hours)) <= dt <= (now + timedelta(hours=hours))
     except Exception:                                   # noqa: BLE001
-        return True 
+        return True
     
 def render_scoreboard() -> None:
     st.sidebar.markdown(
