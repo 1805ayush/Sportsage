@@ -11,7 +11,11 @@ import streamlit as st
 
 from ui.components.chat import render_chat
 from ui.components.scoreboard import render_scoreboard
-
+import os
+from config.settings import get_settings
+_s = get_settings()
+st.write(f"DB path: {_s.sqlite_db_path}")
+st.write(f"DB exists: {os.path.exists(_s.sqlite_db_path)}")
 st.set_page_config(
     page_title="SportsSage",
     page_icon="⚽",
