@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pydantic_settings import BaseSettings, SettingsConfigDict
+import os
 
 
 class Settings(BaseSettings):
@@ -29,10 +30,10 @@ class Settings(BaseSettings):
     redis_block_ms: int = 5_000         # XREAD BLOCK timeout in ms (SSE endpoint)
 
     # ── SQLite ────────────────────────────────────────────────────────────
-    sqlite_db_path: str = "data/db/sportsage.db"
+    sqlite_db_path: str = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "db", "sportsage.db")
 
     # ── ChromaDB ──────────────────────────────────────────────────────────
-    chroma_persist_path: str = "data/chroma"
+    chroma_persist_path: str = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "chroma")    
     chroma_collection_name: str = "sports_history"
     embedding_model: str = "all-MiniLM-L6-v2"  # sentence-transformers, runs locally
 
